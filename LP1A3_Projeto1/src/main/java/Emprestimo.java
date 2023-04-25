@@ -1,13 +1,33 @@
-import java.util.Date;
+package entities;
 
-public class Emprestimo{
+import java.util.Date;
+import java.util.Objects;
+
+public class Emprestimo {
+    private int id;
     private Livro livro;
     private Cliente cliente;
     private Usuario usuario;
     private Date dataEmprestimo;
     private Date dataDevolucao;
 
-    public Livro getLivro() {
+    public Emprestimo(int id, Livro livro, Cliente cliente, Usuario usuario, Date dataEmprestimo, Date dataDevolucao) {
+        this.id = id;
+        this.livro = livro;
+        this.cliente = cliente;
+        this.usuario = usuario;
+        this.dataEmprestimo = dataEmprestimo;
+        this.dataDevolucao = dataDevolucao;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+        public Livro getLivro() {
         return livro;
     }
 
@@ -45,5 +65,18 @@ public class Emprestimo{
 
     public void setDataDevolucao(Date dataDevolucao) {
         this.dataDevolucao = dataDevolucao;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Emprestimo that = (Emprestimo) o;
+        return id == that.id && Objects.equals(livro, that.livro) && Objects.equals(cliente, that.cliente) && Objects.equals(usuario, that.usuario) && Objects.equals(dataEmprestimo, that.dataEmprestimo) && Objects.equals(dataDevolucao, that.dataDevolucao);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, livro, cliente, usuario, dataEmprestimo, dataDevolucao);
     }
 }
